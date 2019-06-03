@@ -3,6 +3,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function currentYear() {
+  const currentYear = document.getElementById('current-year');
+  const date = new Date();
+  currentYear.textContent = date.getFullYear().toString();
+}
 
 /**
  * Common database helper functions.
@@ -212,8 +217,8 @@ var DBHelper =
         value: function mapMarkerForRestaurant(restaurant, map) {
           // https://leafletjs.com/reference-1.3.0.html#marker
           var marker = new L.marker([restaurant.latlng.lat, restaurant.latlng.lng], {
-            title: restaurant.name,
-            alt: restaurant.name,
+            title: `${restaurant.name} restaurant`,
+            alt: `${restaurant.name} restaurant`,
             url: DBHelper.urlForRestaurant(restaurant)
           });
           marker.addTo(newMap);
@@ -246,3 +251,5 @@ var DBHelper =
 
       return DBHelper;
     }();
+
+    currentYear();
